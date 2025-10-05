@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:5001',
+        target: 'https://portfolio-backend-upwn.onrender.com',
         changeOrigin: true,
       },
     },
