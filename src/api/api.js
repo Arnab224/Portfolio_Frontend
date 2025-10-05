@@ -1,7 +1,7 @@
 
 
 // Base URL for your backend API
-export const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5001/api";
+export const API_BASE_URL = import.meta.env.API_BASE_URL;
 
 // CONTACT ROUTES
 export const CONTACT_API = {
