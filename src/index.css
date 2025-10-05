@@ -1,10 +1,60 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ===== CSS RESET & FONT SIZE FIX ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px; /* Explicitly set base font size */
+  -webkit-text-size-adjust: 100%; /* Prevent iOS auto zoom */
+  text-size-adjust: 100%; /* Standard property */
+}
+
+body {
+  font-size: 1rem; /* Use rem units based on html font-size */
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
+}
+
+/* Force consistent font sizes */
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1rem; }
+p, li, a, span { font-size: 1rem; }
+
+/* Mobile font size adjustments */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+  
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.5rem; }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+/* ===== FONT FACES ===== */
 @font-face {
   font-family: 'JetBrains Mono';
   src: url('/fonts/JetBrainsMono-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
+  font-size: 100%; /* Ensure consistent sizing */
 }
 
 @font-face {
@@ -13,17 +63,14 @@
   font-weight: 400;
   font-style: normal;
   font-display: swap;
+  font-size: 100%; /* Ensure consistent sizing */
 }
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ===== ROOT & RESET ===== */
-html {
-  font-size: 16px;
-}
-
+/* ===== ROOT VARIABLES ===== */
 :root {
   --primary: #00ff88;
   --secondary: #00ccff;
@@ -34,13 +81,7 @@ html {
   --text-secondary: #888888;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  transition: all 0.3s ease;
-}
-
+/* ===== BODY STYLES ===== */
 body {
   font-family: 'JetBrains Mono', monospace;
   font-display: swap;
@@ -48,6 +89,7 @@ body {
   color: var(--text);
   overflow-x: hidden;
   line-height: 1.6;
+  transition: all 0.3s ease;
 }
 
 /* ===== SCROLLBAR STYLES ===== */
@@ -167,6 +209,7 @@ body {
   border: 1px solid #333;
   border-left: 4px solid var(--primary);
   font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
   padding: 1rem;
   margin: 1rem 0;
   overflow-x: auto;
@@ -176,6 +219,7 @@ body {
 @layer components {
   .cyber-button {
     @apply bg-black border border-green-500/30 text-green-400 px-4 py-2 rounded font-mono text-sm transition-all duration-300 hover:bg-green-500/10 hover:border-green-500/50 hover:glow-primary;
+    font-size: 0.875rem; /* Consistent 14px */
   }
   
   .cyber-card {
@@ -184,6 +228,7 @@ body {
   
   .terminal-input {
     @apply w-full bg-black border border-green-500/30 text-green-400 px-4 py-3 rounded focus:outline-none focus:border-green-500 focus:glow-primary font-mono placeholder-gray-600;
+    font-size: 1rem; /* Consistent 16px */
   }
 }
 
@@ -216,8 +261,7 @@ body {
   }
 }
 
-
-/* Particle Text Animations */
+/* ===== PARTICLE TEXT ANIMATIONS ===== */
 .particle-text {
   display: inline-block;
   cursor: pointer;
@@ -234,7 +278,7 @@ body {
   transform: scale(1.2);
 }
 
-/* 3D Canvas Container */
+/* ===== 3D CANVAS CONTAINER ===== */
 .canvas-container {
   position: fixed;
   top: 0;
@@ -251,7 +295,7 @@ body {
   z-index: 10;
 }
 
-/* Cosmic glow effects */
+/* ===== COSMIC GLOW EFFECTS ===== */
 .cosmic-glow {
   box-shadow: 
     0 0 20px rgba(0, 255, 127, 0.1),
@@ -259,9 +303,42 @@ body {
     inset 0 0 20px rgba(0, 255, 127, 0.05);
 }
 
-/* Smooth transitions */
+/* ===== SMOOTH TRANSITIONS ===== */
 * {
   transition: all 0.3s ease;
 }
 
+/* ===== BROWSER-SPECIFIC FIXES ===== */
+/* Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+  html {
+    -webkit-text-size-adjust: none;
+  }
+}
 
+/* Firefox specific fixes */
+@-moz-document url-prefix() {
+  body {
+    font-size: 1rem;
+  }
+}
+
+/* ===== DEBUG STYLES (Remove after testing) ===== */
+/* 
+.debug-font-size {
+  border: 1px solid red;
+  font-size: 1rem !important;
+}
+
+body::before {
+  content: "Base font-size: 16px";
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: red;
+  color: white;
+  padding: 5px;
+  z-index: 9999;
+  font-size: 12px;
+}
+*/
