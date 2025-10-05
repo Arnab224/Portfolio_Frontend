@@ -1,0 +1,246 @@
+/* src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #00ff88;
+  --secondary: #00ccff;
+  --accent: #ff0080;
+  --background: #0a0a0a;
+  --surface: #111111;
+  --text: #ffffff;
+  --text-secondary: #888888;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'JetBrains Mono', monospace;
+  background-color: var(--background);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ===== SCROLLBAR STYLES ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary);
+}
+
+/* ===== GLOW EFFECTS ===== */
+.glow-primary {
+  text-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary);
+}
+
+.glow-secondary {
+  text-shadow: 0 0 10px var(--secondary), 0 0 20px var(--secondary);
+}
+
+.cyber-glow {
+  filter: drop-shadow(0 0 10px #00ff88) drop-shadow(0 0 20px #00ff88);
+}
+
+/* ===== TERMINAL & TEXT EFFECTS ===== */
+.terminal-text {
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.terminal-cursor {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* ===== BACKGROUND EFFECTS ===== */
+.matrix-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.7;
+}
+
+.cyber-grid {
+  background-image: 
+    linear-gradient(rgba(0, 255, 136, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 136, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.grid-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(0, 255, 136, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 136, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+/* ===== ANIMATIONS ===== */
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+.binary-rain {
+  position: absolute;
+  color: var(--primary);
+  font-size: 14px;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh);
+  }
+}
+
+/* ===== CODE & UI COMPONENTS ===== */
+.code-block {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-left: 4px solid var(--primary);
+  font-family: 'JetBrains Mono', monospace;
+  padding: 1rem;
+  margin: 1rem 0;
+  overflow-x: auto;
+}
+
+/* ===== CUSTOM COMPONENT STYLES ===== */
+@layer components {
+  .cyber-button {
+    @apply bg-black border border-green-500/30 text-green-400 px-4 py-2 rounded font-mono text-sm transition-all duration-300 hover:bg-green-500/10 hover:border-green-500/50 hover:glow-primary;
+  }
+  
+  .cyber-card {
+    @apply bg-black border border-green-500/30 rounded-lg p-6 font-mono hover:border-green-500/50 transition-all duration-300;
+  }
+  
+  .terminal-input {
+    @apply w-full bg-black border border-green-500/30 text-green-400 px-4 py-3 rounded focus:outline-none focus:border-green-500 focus:glow-primary font-mono placeholder-gray-600;
+  }
+}
+
+/* ===== RESPONSIVE UTILITIES ===== */
+@layer utilities {
+  .text-shadow-glow {
+    text-shadow: 0 0 10px currentColor;
+  }
+  
+  .border-glow {
+    box-shadow: 0 0 10px var(--primary);
+  }
+}
+
+/* ===== ACCESSIBILITY ===== */
+@media (prefers-reduced-motion: reduce) {
+  .terminal-cursor,
+  .pulse,
+  .binary-rain {
+    animation: none;
+  }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  .matrix-bg,
+  .grid-overlay,
+  .cyber-grid {
+    display: none;
+  }
+}
+
+
+/* Particle Text Animations */
+.particle-text {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.particle-char {
+  display: inline-block;
+  transition: all 0.3s ease;
+  will-change: transform, opacity;
+}
+
+.particle-char:hover {
+  color: #00ff88 !important;
+  transform: scale(1.2);
+}
+
+/* 3D Canvas Container */
+.canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ensure content stays above 3D background */
+.relative.z-10 {
+  position: relative;
+  z-index: 10;
+}
+
+/* Cosmic glow effects */
+.cosmic-glow {
+  box-shadow: 
+    0 0 20px rgba(0, 255, 127, 0.1),
+    0 0 40px rgba(64, 224, 208, 0.05),
+    inset 0 0 20px rgba(0, 255, 127, 0.05);
+}
+
+/* Smooth transitions */
+* {
+  transition: all 0.3s ease;
+}
+
+
